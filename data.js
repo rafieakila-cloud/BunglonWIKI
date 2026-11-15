@@ -1,30 +1,106 @@
 // Bacapi Wiki - content database
 const ARTICLES = [
   {
+    id: 'sumber-resmi',
+    title: 'Sumber Resmi Pengetahuan (11 Gratis)',
+    category: 'Sumber',
+    body: `# Sumber Resmi Pengetahuan — 11 Gratis
+
+BunglonWIKI menarik ilmu dasar dari sumber **legal & gratis** berikut. Tidak ada konten bajakan — semua open access atau dengan lisensi terbuka.
+
+## 1. Wikipedia
+Ensiklopedia terbesar dunia. Konten: 300+ bahasa, 6M+ artikel Inggris. Salinan Wikimedia Foundation.
+- https://id.wikipedia.org — bahasa Indonesia
+- https://en.wikipedia.org — English
+
+## 2. Wikimedia Commons
+Media berlisensi terbuka: foto, video, audio, ilustrasi — bisa langsung embed di artikel wiki.
+- https://commons.wikimedia.org
+
+## 3. Wikidata
+Basis pengetahuan terstruktur — facts, relasi, entity (dipakai Wikipedia & Google).
+- https://www.wikidata.org
+
+## 4. OpenAlex
+Repositori 250M+ karya akademik (jurnal, konferensi, buku, preprint) — update otomatis dari Crossref/DOI.
+- https://api.openalex.org — API gratis, tanpa kunci
+- Docs: https://docs.openalex.org
+
+## 5. DOAJ (Directory of Open Access Journals)
+14.000+ jurnal ilmiah open access, editorial terverifikasi.
+- https://doaj.org
+
+## 6. arXiv
+Preprint penelitian: physics, math, CS, biology. Akses langsung, tanpa peer review.
+- https://arxiv.org
+
+## 7. Internet Archive (+ Open Library)
+Arsip digital milik publik: buku, film, musik, software, web. Open Library = katalog.
+- https://archive.org
+- https://openlibrary.org
+
+## 8. Zenodo
+Repository riset oleh CERN — datasets, software, preprint, paper. Open access gratis.
+- https://zenodo.org
+
+## 9. DOAB (Directory of Open Access Books)
+200.000+ buku ilmiah open access terverifikasi.
+- https://directory.doabooks.org
+
+## 10. Wikibooks
+Buku teks terbuka untuk pelajar — pemrograman, sains, teknologi, filsafat, dsb.
+- https://en.wikibooks.org
+
+## 11. Project Gutenberg
+60.000+ buku klasik domain publik.
+- https://www.gutenberg.org (alternatif: https://www.gutenberg.org/ebooks/search/?query=)
+
+## Cara pakai
+
+Saat menulis artikel di Wiki, gunakan sitasi langsung ke sumber di atas (bukan forum/mirror). Ini menjaga BunglonWIKI sebagai sumber terpercaya.
+
+## Catatan
+
+- Semua sumber di atas **legal digunakan** untuk non-komersial dan komersial jika lisensi mengizinkannya
+- Verify license each time: CC-BY / CC-BY-SA / CC0 / Public Domain / Open Access
+- BunglonWIKI tidak mendistribusikan konten berbayar — hanya referensi online
+`,
+  },
+  {
     id: 'welcome',
-    title: 'Selamat datang di Bacapi Wiki',
+    title: 'Selamat datang di BunglonWIKI',
     category: 'Memulai',
-    body: `# Selamat datang di Bacapi Wiki
+    body: `# Selamat datang di BunglonWIKI
 
-**Bacapi Linux** adalah distro Linux terminal-first yang ringan, efisien, dan aman — dibuat untuk laptop, PC lama, dan bahkan VirtualBox. Cocok untuk server, embedded, atau belajar Linux.
+<div class="hero-cards">
 
-Saat ini ada **dua varian**:
-- **Bacapi 3.1 (Platipus) - Generasi Mulus** — terminal-only, bootstrap cepat, ISO 150 MB
-- **Bacapi 2 GUI - Dugong** — Bacapi dengan desktop (estimasi rilis: 2027) *[lihat artikel rilis](#rilis-2027)*
+  <div class="card primary">
+    <h3>🐧 Apa itu Bacapi?</h3>
+    <p>Linux terminal-first yang ringan, aman, dan gratis. ISO ~140 MB.</p>
+  </div>
 
-## Untuk pengguna baru
+  <div class="card">
+    <h3>⚡ Untuk siapa?</h3>
+    <p>Developer, sysadmin, pelajar, dan siapa pun yang ingin efisiensi terminal.</p>
+  </div>
 
-1. [Instalasi di VirtualBox](#instal) — cara menjalankan Bacapi di laptopmu
-2. [Menjaga Bacapi](#bacapi-shell) — shell, perintah, dan tips
-3. [Bacapi Defend](#defend) — antivirus ringan bawaan
-4. [Bacapi BIOS](#bios) — menu BIOS untuk reset/update
-5. [Rilis Bacapi 2 GUI — 2027](#rilis-2027) — roadmap masa depan
+  <div class="card">
+    <h3>🔥 Kenapa BunglonWIKI?</h3>
+    <p>Dokumentasi resmi, interaktif, installable — semua di browsermu.</p>
+  </div>
 
-## Kontribusi
+</div>
 
-- GitHub: https://github.com/bacapi
-- Issues diputus: https://github.com/bacapi/issues
-- Dokumentasi ini di-host di GitHub Pages — fork, edit, dan kirim PR!
+## Mulai dari sini
+
+1. [Instalasi di VirtualBox](#instal)
+2. [Bekerja di Bacapi Shell](#bacapi-shell)
+3. [Bacapi Defend](#defend)
+4. [Bacapi BIOS](#bios)
+5. [Bacapi 2 GUI — 2027](#rilis-2027)
+6. [Sumber Resmi (11 gratis)](#sumber-resmi)
+
+> **Catatan buat pengguna:** BunglonWIKI juga bisa kamu install di HP/PC sebagai aplikasi mandiri (PWA). Coba klik tombol **Install** di server baris atas (HP) atau **Add to home screen** (iOS).
 `,
   },
   {
