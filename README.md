@@ -14,16 +14,16 @@ Dokumentasi resmi proyek **Bacapi Linux** — sebagai PWA (Progressive Web App),
 ## Deploy ke GitHub Pages
 
 ```sh
-git remote add origin git@github.com:afif72an/BunglonWIKI.git
+git remote add origin git@github.com:rafieakila-cloud/BunglonWIKI.git
 git push -u origin main
 ```
 
-Lalu buka **https://github.com/afif72an/BunglonWIKI/settings/pages** → pilih **main / root** → Save.
-Situs akan live di **https://afif72an.github.io/BunglonWIKI/** dalam ~1 menit.
+Lalu buka **https://github.com/rafieakila-cloud/BunglonWIKI/settings/pages** → pilih **main / root** → Save.
+Situs akan live di **https://rafieakila-cloud.github.io/BunglonWIKI/** dalam ~1 menit.
 
 ### Scan QR untuk install di HP
 
-QR di `qr.png` menunjuk ke **https://afif72an.github.io/BunglonWIKI/**. Setelah situs aktif:
+QR di `qr.png` menunjuk ke **https://rafieakila-cloud.github.io/BunglonWIKI/**. Setelah situs aktif:
 
 1. Buka URL di Chrome di HP Android kamu
 2. Klik ⋮ → **Install app** atau **Add to Home screen**

@@ -4,7 +4,7 @@ import qrcode
 
 from PIL import Image, ImageDraw, ImageFont
 
-URL = 'https://afif72an.github.io/BunglonWIKI/'
+URL = 'https://rafieakila-cloud.github.io/BunglonWIKI/'
 qr = qrcode.QRCode(box_size=20, border=4, error_correction=qrcode.constants.ERROR_CORRECT_H)
 qr.add_data(URL)
 qr.make(fit=True)
