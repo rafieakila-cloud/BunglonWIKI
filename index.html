@@ -3,71 +3,113 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bacapi Wiki — Dokumentasi Bacapi</title>
-<meta name="description" content="Wiki Bacapi: dokumentasi resmi Bacapi Linux. Tutorial, referensi perintah, FAQ, dan panduan pengguna, installable via PWA." />
+<title>BunglonWIKI — Baca Apa Pun</title>
+<meta name="description" content="Wiki terbuka proyek Bacapi Linux: baca referensi, tutorial, dan dokumentasiBacapi secara bebas." />
 <link rel="manifest" href="manifest.webmanifest" />
-<meta name="theme-color" content="#f0c040" />
+<meta name="theme-color" content="#ffffff" />
 <link rel="icon" href="icon-192.png" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <span class="mark">B</span>
-    <div>
-      <h1>Bacapi Wiki</h1>
-      <p class="sub">Dokumentasi Bacapi Linux</p>
+<header id="siteHeader">
+  <div class="brand">
+    <div class="logo" aria-hidden="true">
+      <div class="logo-puzzle">
+        <span class="p1">B</span>
+      </div>
+    </div>
+    <div class="title-block">
+      <h1>BunglonWIKI</h1>
+      <p class="subtitle">Ensiklopedia bebas Bacapi</p>
     </div>
   </div>
-  <div class="header-actions">
-    <div class="search">
-      <input type="search" id="searchInput" placeholder="Cari artikel, perintah, tips…" aria-label="Cari" />
-    </div>
-    <button id="installBtn" class="btn-primary hidden">
-      <span class="install-icon">⬇️</span> Install
+
+  <nav class="primary-nav" aria-label="Primary">
+    <a class="active" href="#" data-nav="wiki"><span class="ico">📖</span> Wiki</a>
+    <a href="#sumber-resmi" data-nav="sources"><span class="ico">🔎</span> Sumber</a>
+    <a href="#rilis-2027" data-nav="release"><span class="ico">🗓️</span> Rilis 2027</a>
+  </nav>
+
+  <div class="search-wrap">
+    <input id="searchInput" placeholder="Cari di BunglonWIKI…" autocomplete="off" aria-label="Pencarian" />
+    <kbd class="hint">/</kbd>
+  </div>
+
+  <div class="util-actions">
+    <button id="installBtn" class="btn hidden" title="Install BunglonWIKI">
+      <span>Install</span>
     </button>
+    <button id="toggleSidebar" class="icon-btn" aria-label="Toggle menu">☰</button>
   </div>
 </header>
 
-<main>
-  <aside id="sidebar">
-    <h2>Kategori</h2>
-    <ul id="navList"></ul>
-    <div class="sidebar-footer">
-      <p>Hosted on GitHub Pages • Open Source MIT</p>
-      <p>© 2026 Bacapi Project</p>
+<main id="layout">
+  <aside id="sidebar" aria-label="Sidebar">
+    <div class="side-section">
+      <h3>Isi</h3>
+      <input id="filterInput" type="text" placeholder="Filter halaman…" aria-label="Filter halaman" />
+      <ul id="navList"></ul>
+    </div>
+    <div class="side-section">
+      <h3>Artikel populer</h3>
+      <ul id="popularList"></ul>
+    </div>
+    <div class="side-footer">
+      <p><strong>BunglonWIKI</strong></p>
+      <p class="muted">Edisi 1.0 · 2026</p>
+      <a class="side-link" href="https://github.com/afif72an/BunglonWIKI" target="_blank" rel="noopener">Kontribusi ↗</a>
     </div>
   </aside>
 
-  <section id="content">
-    <article id="article">
-      <header class="article-header">
-        <h1 id="articleTitle">Selamat datang di Bacapi Wiki</h1>
-        <div class="meta">
-          <span id="articleCategory"></span>
-          <a id="githubEdit" target="_blank" rel="noopener" title="Edit di GitHub">Edit di GitHub →</a>
-        </div>
-      </header>
+  <section id="content" aria-live="polite">
+    <article id="article" class="article">
+      <div class="article-meta">
+        <span class="page-title" id="articleTitle">Selamat datang</span>
+        <span class="page-category" id="articleCategory"></span>
+      </div>
+      <hr />
       <div id="articleBody" class="article-body"></div>
-      <footer class="article-footer">
-        <p>Artikel ini ditulis sebagai bagian dari proyek Bacapi.</p>
-      </footer>
     </article>
   </section>
 </main>
 
-<div id="installPrompt" class="install-prompt hidden" role="dialog">
-  <p>Mulailah dengan Bacapi Wiki offline?</p>
-  <div class="install-actions">
-    <button id="confirmInstall" class="btn-primary">Install sekarang</button>
-    <button id="dismissInstall" class="btn-ghost">Nanti saja</button>
+<footer id="siteFooter">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-puzzle small"><span class="p1">B</span></div>
+      <div>
+        <strong>BunglonWIKI</strong>
+        <p class="muted">Ensiklopedia bebas — Bacapi Project, 2026</p>
+      </div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://github.com/afif72an/BunglonWIKI">Kontribusi</a></li>
+      <li><a href="https://github.com/afif72an/BunglonWIKI/issues">Laporkan bug</a></li>
+      <li><a href="https://bacapi.dev">Website Bacapi</a></li>
+      <li><a href="#sumber-resmi">Sumber</a></li>
+      <li><a href="#rilis-2027">Rilis 2027</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div id="installPrompt" class="install-prompt hidden" role="dialog" aria-modal="true" aria-label="Install BunglonWIKI">
+  <div class="install-card">
+    <div class="install-logo">B</div>
+    <div>
+      <h3>Install BunglonWIKI</h3>
+      <p class="muted">Buka dari home screen — offline tersedia.</p>
+    </div>
+    <div class="install-actions">
+      <button id="confirmInstall" class="btn">Install sekarang</button>
+      <button id="dismissInstall" class="btn-link">Nanti</button>
+    </div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"></script>
 <script src="data.js"></script>
 <script src="app.js"></script>
 <script>

@@ -1,67 +1,87 @@
-// Bacapi Wiki - aplikasi utama (vanilla JS, CDN: marked, highlight.js)
+// BunglonWIKI - aplikasi utama (vanilla JS, CDN: marked, highlight.js)
 
-// ARTICLES disediakan global oleh data.js (konstanta lexical scope)
 let currentId = ARTICLES[0]?.id;
 
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 const navList = $('#navList');
+const popularList = $('#popularList');
 const articleTitle = $('#articleTitle');
 const articleBody = $('#articleBody');
 const articleCategory = $('#articleCategory');
-const githubEdit = $('#githubEdit');
 const searchInput = $('#searchInput');
+const filterInput = $('#filterInput');
 const installBtn = $('#installBtn');
 const installPrompt = $('#installPrompt');
 const confirmInstall = $('#confirmInstall');
 const dismissInstall = $('#dismissInstall');
+const toggleSidebar = $('#toggleSidebar');
 
-const REPO = 'https://github.com/bacapi/wiki';
+const REPO = 'https://github.com/afif72an/BunglonWIKI';
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function item(a) {
+  return `<li><a href="#${a.id}" data-id="${a.id}" class="${a.id === currentId ? 'active' : ''}">${escapeHtml(a.title)}</a></li>`;
+}
 
 function renderNav() {
-  navList.innerHTML = ARTICLES.map(a =>
-    `<li><a href="#${a.id}" data-id="${a.id}" class="${a.id === currentId ? 'active' : ''}">${escapeHtml(a.title)}</a></li>`
-  ).join('');
+  navList.innerHTML = ARTICLES.map(item).join('');
+  // Popular pick — first 5 articles
+  popularList.innerHTML = ARTICLES.slice(0, 6).map(item).join('');
 }
 
 function renderArticle(id) {
   const article = ARTICLES.find(a => a.id === id);
   if (!article) return;
   currentId = id;
+  articleBody.classList.add('loading');
   articleTitle.textContent = article.title;
   articleCategory.textContent = article.category || '';
   articleBody.innerHTML = marked.parse(article.body);
-  githubEdit.href = `${REPO}/edit/main/docs/${article.id}.md`;
-  // Highlight code blocks
-  $$('pre code').forEach(block => hljs.highlightElement(block));
+  // Highlight all code blocks
+  $$('pre code').forEach(block => {
+    try { hljs.highlightElement(block); } catch (e) { /* ignore */ }
+  });
+  setTimeout(() => articleBody.classList.remove('loading'), 150);
   renderNav();
   window.location.hash = id;
-  // scroll content to top
   $('#content').scrollTop = 0;
-}
-
-function escapeHtml(s) {
-  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 function searchAll(q) {
   const needle = q.trim().toLowerCase();
   navList.innerHTML = ARTICLES
     .filter(a => !needle || a.title.toLowerCase().includes(needle) || a.body.toLowerCase().includes(needle))
-    .map(a => `<li><a href="#${a.id}" data-id="${a.id}" class="${a.id === currentId ? 'active' : ''}">${escapeHtml(a.title)}</a></li>`)
-    .join('');
+    .map(item).join('') || '<li><em class="muted" style="padding:8px 12px;display:block">Tidak ada hasil</em></li>';
 }
+filterInput?.addEventListener('input', (e) => searchAll(e.target.value));
+searchInput?.addEventListener('input', (e) => searchAll(e.target.value));
+toggleSidebar?.addEventListener('click', () => $('#sidebar').classList.toggle('open'));
 
-// events
-document.addEventListener('click', (e) => {
-  const a = e.target.closest('a[href^="#"]');
-  if (a) {
+// Primary nav → deep-link
+$$('.primary-nav a[data-nav]').forEach(a =>
+  a.addEventListener('click', (e) => {
     e.preventDefault();
-    renderArticle(a.getAttribute('href').slice(1));
+    const target = a.dataset.nav === 'wiki' ? ARTICLES[0]?.id
+                 : a.dataset.nav === 'sources' ? 'sumber-resmi'
+                 : 'rilis-2027';
+    if (target) renderArticle(target);
+    $$('.primary-nav a').forEach(x => x.classList.toggle('active', x === a));
+  })
+);
+
+// Keyboard shortcut: "/" focuses search
+document.addEventListener('keydown', (e) => {
+  if (e.key === '/' && !/input|textarea/i.test(e.target.tagName)) {
+    e.preventDefault();
+    searchInput.focus();
   }
 });
-searchInput.addEventListener('input', (e) => searchAll(e.target.value));
 
+// Hash routing
 window.addEventListener('hashchange', () => {
   const id = window.location.hash.slice(1);
   if (id) renderArticle(id);
@@ -72,28 +92,22 @@ let deferredPrompt = null;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  installBtn.classList.remove('hidden');
+  installBtn?.classList.remove('hidden');
   showInstallPrompt();
 });
 installBtn?.addEventListener('click', async () => {
   if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const choice = await deferredPrompt.userChoice;
-  if (navigator.standalone) installBtn.classList.add('hidden');
-  deferredPrompt = null;
-});
-confirmInstall?.addEventListener('click', async () => {
-  if (!deferredPrompt) { installPrompt.classList.add('hidden'); return; }
   installPrompt.classList.add('hidden');
-  installBtn.click();
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  installBtn.classList.add('hidden');
 });
+confirmInstall?.addEventListener('click', () => installBtn?.click());
 dismissInstall?.addEventListener('click', () => installPrompt.classList.add('hidden'));
 function showInstallPrompt() { installPrompt.classList.remove('hidden'); }
+if (window.matchMedia('(display-mode: standalone)').matches) installBtn?.classList.add('hidden');
 
-if (window.matchMedia('(display-mode: standalone)').matches) {
-  installBtn?.classList.add('hidden');
-}
-
-// initial render
+// Initial render
 const firstId = window.location.hash.slice(1) || ARTICLES[0]?.id;
 renderArticle(firstId);
