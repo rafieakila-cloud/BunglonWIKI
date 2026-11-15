@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bacapi Wiki — Dokumentasi Bacapi</title>
+<meta name="description" content="Wiki Bacapi: dokumentasi resmi Bacapi Linux. Tutorial, referensi perintah, FAQ, dan panduan pengguna, installable via PWA." />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#f0c040" />
+<link rel="icon" href="icon-192.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="mark">B</span>
+    <div>
+      <h1>Bacapi Wiki</h1>
+      <p class="sub">Dokumentasi Bacapi Linux</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <div class="search">
+      <input type="search" id="searchInput" placeholder="Cari artikel, perintah, tips…" aria-label="Cari" />
+    </div>
+    <button id="installBtn" class="btn-primary hidden">
+      <span class="install-icon">⬇️</span> Install
+    </button>
+  </div>
+</header>
+
+<main>
+  <aside id="sidebar">
+    <h2>Kategori</h2>
+    <ul id="navList"></ul>
+    <div class="sidebar-footer">
+      <p>Hosted on GitHub Pages • Open Source MIT</p>
+      <p>© 2026 Bacapi Project</p>
+    </div>
+  </aside>
+
+  <section id="content">
+    <article id="article">
+      <header class="article-header">
+        <h1 id="articleTitle">Selamat datang di Bacapi Wiki</h1>
+        <div class="meta">
+          <span id="articleCategory"></span>
+          <a id="githubEdit" target="_blank" rel="noopener" title="Edit di GitHub">Edit di GitHub →</a>
+        </div>
+      </header>
+      <div id="articleBody" class="article-body"></div>
+      <footer class="article-footer">
+        <p>Artikel ini ditulis sebagai bagian dari proyek Bacapi.</p>
+      </footer>
+    </article>
+  </section>
+</main>
+
+<div id="installPrompt" class="install-prompt hidden" role="dialog">
+  <p>Mulailah dengan Bacapi Wiki offline?</p>
+  <div class="install-actions">
+    <button id="confirmInstall" class="btn-primary">Install sekarang</button>
+    <button id="dismissInstall" class="btn-ghost">Nanti saja</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(err => console.warn('sw register failed', err));
+    });
+  }
+</script>
+</body>
+</html>
